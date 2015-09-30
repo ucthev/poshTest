@@ -14,4 +14,4 @@ Function Get-InstalledPrograms {
 
 # call function to get programs
 $iprogs = Get-InstalledPrograms
-$iprogs | out-file -path c:\instProgs.txt -force
+$iprogs | out-file -filepath c:\instProgs.txt -force
