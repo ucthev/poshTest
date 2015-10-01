@@ -1,5 +1,5 @@
 - name: get os name (windows)
-  hosts: windows
+  hosts: winServers
   gather_facts: false
   tasks:
     - name: run powershell module to get os name
