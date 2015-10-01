@@ -13,4 +13,5 @@ $osname = (Get-WmiObject -Class win32_operatingSystem).Caption
 $result.name = $osname
 
 # return result back
-Exit-Json $result;
+#Exit-Json $result;
+return $result
