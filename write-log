@@ -1,0 +1,32 @@
+#!powershell
+# WANT_JSON
+# POWERSHELL_COMMON
+
+$params = Parse-Args $args;
+$result = New-Object PSObject;
+Set-Attr $result "changed" $false;
+
+# check if service name argument is given or not
+If (-not $params.logfile.GetType) {
+    Fail-Json $result "missing required arguments: logfile"
+}
+
+# check if service name argument is given or not
+If (-not $params.message.GetType) {
+    Fail-Json $result "missing required arguments: message"
+}
+
+# write message to log file
+try { 
+  Out-File -FilePath $params.logfile -Append -InputObject $params.message
+  Set-Attr $result "changed" $true;
+  Set-Attr $result "log-write-status" "successfully written";
+}
+catch {
+  Set-Attr $result "log-write-status" "failed to write to log";
+  Fail-Json $result $_.Exception.Message
+}
+
+# return result back
+Exit-Json $result;
+#return $result
