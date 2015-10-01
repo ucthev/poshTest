@@ -1,0 +1,8 @@
+- name: get os name (windows)
+  hosts: windows
+  gather_facts: false
+  tasks:
+    - name: run powershell module to get os name
+      script: get_osname.yml
+      register: powershell
+    - debug: var=powershell
