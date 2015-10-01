@@ -1,0 +1,8 @@
+- name: write to given log fle (windows)
+  hosts: windows192
+  gather_facts: false
+  tasks:
+    - name: run powershell module to get os name
+      script: write-log.ps1 -logname "c:\tet.log" -message "This is a sample message at $(get-date)"
+      register: out
+    - debug: var=out
